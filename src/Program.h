@@ -16,10 +16,11 @@ class Program {
 private:
     SDL_Window* window;
     SDL_Renderer* renderer;
-    std::stack<State::State> stateStack;
+    Uint32 lastUpdate;
+    const Uint32 MIN_UPDATE_TIME = 20;
+    std::stack<State::State*> stateStack;
 public:
     void startMainLoop();
-    void render();
 
     Program();
     ~Program();

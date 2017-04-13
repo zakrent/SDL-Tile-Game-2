@@ -22,8 +22,8 @@ private:
     TextureWrapper entitySheet;
     TextureWrapper tileSheet;
     Uint32 lastUpdate;
-    std::stack<State::State*> stateStack;
 public:
+    std::stack<State::State*> stateStack;
     void startMainLoop();
 
     Program();

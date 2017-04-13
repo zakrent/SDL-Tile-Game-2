@@ -8,17 +8,20 @@
 #include <SDL_events.h>
 #include <SDL_render.h>
 #include "State.h"
+#include "../map/Map.h"
+#include "../Program.h"
 
 namespace State {
     class GameplayState : public State{
     private:
-        Map mainMap;
+        Map::Map mainMap;
+        Program* mainProgram;
     public:
         void update();
         void render(SDL_Renderer* renderer);
         void handleEvent(SDL_Event& event);
 
-        GameplayState();
+        GameplayState(Map::Map mainMap, Program *mainProgram);
         ~GameplayState();
     };
 }

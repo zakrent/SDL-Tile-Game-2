@@ -11,10 +11,10 @@ Program::Program() {
     SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window, &renderer);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
-    entitySheet.loadFromFile(renderer, "/textures/entitySheet.bmp");
-    tileSheet.loadFromFile(renderer, "/textures/TileSheet.bmp");
+    entitySheet.loadFromFile(renderer, "textures/EntitySheet.bmp");
+    tileSheet.loadFromFile(renderer, "textures/TileSheet.bmp");
 
-    stateStack.push(new State::GameplayState);
+    stateStack.push(new State::GameplayState(Map::Map(&entitySheet, &tileSheet), this));
 }
 
 Program::~Program() {
@@ -25,16 +25,16 @@ void Program::startMainLoop() {
 
     while(!stateStack.empty()) {
 
-        SDL_Event event;
-        while( SDL_PollEvent( &event) != 0 ) {
-            stateStack.top()->handleEvent(event);
-        }
-
         stateStack.top()->update();
 
         Render::beginRendering(renderer);
         stateStack.top()->render(renderer);
         Render::swapBuffers(renderer);
+
+        SDL_Event event;
+        while( SDL_PollEvent( &event) != 0 && !stateStack.empty()) {
+            stateStack.top()->handleEvent(event);
+        }
 
         if (!SDL_TICKS_PASSED(SDL_GetTicks() + 1, lastUpdate + MIN_UPDATE_TIME)) {
             SDL_Delay((lastUpdate + MIN_UPDATE_TIME) - SDL_GetTicks());

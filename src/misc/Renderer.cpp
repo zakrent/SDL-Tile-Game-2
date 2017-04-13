@@ -7,6 +7,7 @@
 #include <SDL_rect.h>
 #include <SDL_render.h>
 #include "TextureWrapper.h"
+#include "Vector2D.h"
 
 namespace Render {
 
@@ -15,8 +16,12 @@ namespace Render {
             SDL_RenderClear(renderer);
     }
 
-    inline void renderTexture(SDL_Renderer* renderer, TextureWrapper* textureClass, SDL_Rect srcrect, SDL_Rect camera, SDL_Rect position, float lightLevel){
-        SDL_Rect dstrect = {position.x - camera.x, position.y - camera.y, position.w, position.h};
+    inline void renderTexture(SDL_Renderer* renderer, TextureWrapper* textureClass, SDL_Rect srcrect, SDL_Rect camera, Vector2D position, Uint8 lightLevel, int scalingFactor = 1){
+        SDL_Rect dstrect = {int(position.x) - camera.x, int(position.y) - camera.y, srcrect.w, srcrect.h};
+        dstrect.x *= scalingFactor;
+        dstrect.y *= scalingFactor;
+        dstrect.w *= scalingFactor;
+        dstrect.h *= scalingFactor;
         SDL_SetTextureColorMod(textureClass->texturePointer, lightLevel, lightLevel, lightLevel);
         SDL_RenderCopyEx(renderer, textureClass->texturePointer, &srcrect, &dstrect, 0, NULL, SDL_FLIP_NONE);
     }

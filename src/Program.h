@@ -8,16 +8,20 @@
 #include <SDL.h>
 #include <stack>
 #include "state/State.h"
+#include "misc/TextureWrapper.h"
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT= 320;
 
 class Program {
 private:
+    const Uint32 MIN_UPDATE_TIME = 20;
+
     SDL_Window* window;
     SDL_Renderer* renderer;
+    TextureWrapper entitySheet;
+    TextureWrapper tileSheet;
     Uint32 lastUpdate;
-    const Uint32 MIN_UPDATE_TIME = 20;
     std::stack<State::State*> stateStack;
 public:
     void startMainLoop();

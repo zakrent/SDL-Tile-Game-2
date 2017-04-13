@@ -11,6 +11,9 @@ Program::Program() {
     SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window, &renderer);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
+    entitySheet.loadFromFile(renderer, "/textures/entitySheet.bmp");
+    tileSheet.loadFromFile(renderer, "/textures/TileSheet.bmp");
+
     stateStack.push(new State::GameplayState);
 }
 

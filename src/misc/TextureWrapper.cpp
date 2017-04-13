@@ -2,19 +2,19 @@
 // Created by zakrent on 4/13/17.
 //
 
-#include "Texture.h"
+#include "TextureWrapper.h"
 
-Texture::Texture() {
+TextureWrapper::TextureWrapper() {
     texturePointer = NULL;
 }
 
-Texture::~Texture() {
+TextureWrapper::~TextureWrapper() {
     if(texturePointer){
         SDL_DestroyTexture(texturePointer);
     }
 }
 
-void Texture::loadFromFile(SDL_Renderer* renderer, char* filePath) {
+void TextureWrapper::loadFromFile(SDL_Renderer* renderer, char* filePath) {
     SDL_Surface* tempSurface = NULL;
     tempSurface = SDL_LoadBMP(filePath);
     texturePointer = SDL_CreateTextureFromSurface(renderer, tempSurface);

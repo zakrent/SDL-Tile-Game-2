@@ -8,14 +8,14 @@
 
 #include <SDL_render.h>
 
-class Texture {
+class TextureWrapper {
 public:
     SDL_Texture* texturePointer;
 
     void loadFromFile(SDL_Renderer* renderer, char* filePath);
 
-    Texture();
-    ~Texture();
+    TextureWrapper();
+    ~TextureWrapper();
 };
 
 

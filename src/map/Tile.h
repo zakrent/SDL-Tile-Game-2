@@ -15,12 +15,12 @@ namespace Map {
 
     class Tile {
     private:
-        int type;
         int state;
         Uint8 lightLevel;
         Vector2D position;
         TextureWrapper* tileSheet;
     public:
+        int type;
         //std::map<direction, Tile*> neighbours;
         void render(SDL_Renderer* renderer, SDL_Rect& camera);
 

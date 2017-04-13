@@ -15,7 +15,7 @@ const int SCREEN_HEIGHT= 320;
 
 class Program {
 private:
-    const Uint32 MIN_UPDATE_TIME = 20;
+    const Uint32 MIN_UPDATE_TIME = 10;
 
     SDL_Window* window;
     SDL_Renderer* renderer;

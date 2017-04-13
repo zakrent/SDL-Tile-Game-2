@@ -39,5 +39,6 @@ void Program::startMainLoop() {
         if (!SDL_TICKS_PASSED(SDL_GetTicks() + 1, lastUpdate + MIN_UPDATE_TIME)) {
             SDL_Delay((lastUpdate + MIN_UPDATE_TIME) - SDL_GetTicks());
         }
+        lastUpdate = SDL_GetTicks();
     }
 }

@@ -3,9 +3,11 @@
 //
 
 #include "Map.h"
+#include "../Program.h"
+
 namespace Map {
     Map::Map(TextureWrapper *entitySheet, TextureWrapper *tileSheet) : entitySheet(entitySheet), tileSheet(tileSheet) {
-        camera = {0,0,320, 640};
+        camera = {0,0, SCREEN_WIDTH, SCREEN_HEIGHT};
 
         for (int x = 0; x < MAP_WIDTH; ++x) {
             std::vector<Tile *> currentRow;
@@ -14,6 +16,7 @@ namespace Map {
             }
             tiles.push_back(currentRow);
         }
+        tiles[4][2]->type = 1;
     }
 
     Map::~Map() {}

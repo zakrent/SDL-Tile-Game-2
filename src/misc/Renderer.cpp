@@ -16,12 +16,12 @@ namespace Render {
             SDL_RenderClear(renderer);
     }
 
-    inline void renderTexture(SDL_Renderer* renderer, TextureWrapper* textureClass, SDL_Rect srcrect, SDL_Rect camera, Vector2D position, Uint8 lightLevel, int scalingFactor = 1){
+    inline void renderTexture(SDL_Renderer* renderer, TextureWrapper* textureClass, SDL_Rect srcrect, SDL_Rect camera, Vector2D position, Uint8 lightLevel, float scalingFactor = 1){
         SDL_Rect dstrect = {int(position.x) - camera.x, int(position.y) - camera.y, srcrect.w, srcrect.h};
-        dstrect.x *= scalingFactor;
-        dstrect.y *= scalingFactor;
-        dstrect.w *= scalingFactor;
-        dstrect.h *= scalingFactor;
+        dstrect.x = ceil(dstrect.x/scalingFactor);
+        dstrect.y = ceil(dstrect.y/scalingFactor);
+        dstrect.w = ceil(dstrect.w/scalingFactor);
+        dstrect.h = ceil(dstrect.h/scalingFactor);
         SDL_SetTextureColorMod(textureClass->texturePointer, lightLevel, lightLevel, lightLevel);
         SDL_RenderCopyEx(renderer, textureClass->texturePointer, &srcrect, &dstrect, 0, NULL, SDL_FLIP_NONE);
     }

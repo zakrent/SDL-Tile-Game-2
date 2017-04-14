@@ -22,6 +22,7 @@ Program::~Program() {
 }
 
 void Program::startMainLoop() {
+    lastUpdate = SDL_GetTicks();
 
     while(!stateStack.empty()) {
 

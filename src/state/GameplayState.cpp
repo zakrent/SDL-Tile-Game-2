@@ -5,7 +5,18 @@
 #include "GameplayState.h"
 namespace State {
 
-    void GameplayState::update() {}
+    void GameplayState::update() {
+        Entity::Entity tempEntity;
+        Entity::PositionComponent *component;
+        component = new Entity::PositionComponent(Vector2D(10, 0));
+        tempEntity.addComponent(component);
+        mainMap.entities.push_back(&tempEntity);
+        for (Entity::System* system : systems){
+            for (Entity::Entity* entity : mainMap.entities) {
+                system->updateEntity(entity);
+            }
+        }
+    }
 
     void GameplayState::render(SDL_Renderer *renderer) {
         mainMap.render(renderer);
@@ -22,11 +33,9 @@ namespace State {
     }
 
     GameplayState::GameplayState(Map::Map mainMap, Program *mainProgram) : mainMap(mainMap), mainProgram(mainProgram) {
-
+        systems.push_back(new Entity::PositionSystem());
     }
 
-    GameplayState::~GameplayState() {
-
-    }
+    GameplayState::~GameplayState() {}
 
 }

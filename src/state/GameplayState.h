@@ -10,12 +10,15 @@
 #include "State.h"
 #include "../map/Map.h"
 #include "../Program.h"
+#include "../entity/systems/Systems.h"
+#include "../entity/components/Components.h"
 
 namespace State {
     class GameplayState : public State{
     private:
         Map::Map mainMap;
         Program* mainProgram;
+        std::vector<Entity::System*> systems;
     public:
         void update();
         void render(SDL_Renderer* renderer);

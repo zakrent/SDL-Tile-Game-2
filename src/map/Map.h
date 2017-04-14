@@ -6,6 +6,7 @@
 
 #include <vector>
 #include "Tile.h"
+#include "../entity/Entity.h"
 
 namespace Map {
 
@@ -14,16 +15,15 @@ namespace Map {
 
     class Map {
     private:
+        std::vector< std::vector< Tile * > > tiles;
         TextureWrapper* entitySheet;
         TextureWrapper* tileSheet;
-        std::vector< std::vector< Tile * > > tiles;
-        //std::vector<Entity*>
         SDL_Rect camera;
-
     public:
-        Map(TextureWrapper *entitySheet, TextureWrapper *tileSheet);
-
+        std::vector<Entity::Entity*> entities;
         void render(SDL_Renderer* renderer);
+
+        Map(TextureWrapper *entitySheet, TextureWrapper *tileSheet);
         ~Map();
     };
 }

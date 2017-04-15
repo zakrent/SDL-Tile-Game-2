@@ -45,15 +45,17 @@ namespace State {
         systems.push_back(new Entity::VisualSystem(mainProgram->renderer, &camera));
     }
 
-    GameplayState::GameplayState(Map::Map mainMap, Program *mainProgram) : mainMap(mainProgram), mainProgram(mainProgram) {
-        camera = {0,0, SCREEN_WIDTH, SCREEN_HEIGHT};
-        loadSystems();
-        //TODO:Remove debug
+    void GameplayState::loadEntities(){
         std::vector<Entity::Component*> components;
         components.push_back(new Entity::PositionComponent(Vector2D(0,32)));
         components.push_back(new Entity::VisualComponent(&mainProgram->entitySheet,0));
         mainMap.addEntity(components);
-        //
+    }
+
+    GameplayState::GameplayState(Map::Map mainMap, Program *mainProgram) : mainMap(mainProgram), mainProgram(mainProgram) {
+        camera = {0,0, SCREEN_WIDTH, SCREEN_HEIGHT};
+        loadSystems();
+        loadEntities();
     }
 
     GameplayState::~GameplayState() {}

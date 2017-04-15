@@ -21,6 +21,7 @@ namespace State {
         std::vector<Entity::System*> systems;
         SDL_Rect camera;
         void loadSystems();
+        void loadEntities();
     public:
         void update();
         void render(SDL_Renderer* renderer);
@@ -28,7 +29,6 @@ namespace State {
 
         GameplayState(Map::Map mainMap, Program *mainProgram);
         ~GameplayState();
-
     };
 }
 

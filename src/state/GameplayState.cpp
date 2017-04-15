@@ -43,12 +43,14 @@ namespace State {
     void GameplayState::loadSystems(){
         systems.push_back(new Entity::PositionSystem());
         systems.push_back(new Entity::VisualSystem(mainProgram->renderer, &camera));
+        systems.push_back(new Entity::CameraSystem());
     }
 
     void GameplayState::loadEntities(){
         std::vector<Entity::Component*> components;
         components.push_back(new Entity::PositionComponent(Vector2D(0,32)));
         components.push_back(new Entity::VisualComponent(&mainProgram->entitySheet,0));
+        components.push_back(new Entity::CameraComponent(&camera));
         mainMap.addEntity(components);
     }
 

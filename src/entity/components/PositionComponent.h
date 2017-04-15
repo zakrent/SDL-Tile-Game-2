@@ -26,6 +26,11 @@ namespace Entity {
             Component::name = "Position";
         }
 
+        PositionComponent(Vector2D position, Vector2D velocity)
+                : velocity(velocity), position(position) {
+            Component::name = "Position";
+        }
+
         ~PositionComponent() {};
     };
 }

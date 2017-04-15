@@ -7,7 +7,7 @@
 
 namespace Map {
     Map::Map(Program *mainProgram) : mainProgram(mainProgram) {
-
+        entities.clear();
         for (int x = 0; x < MAP_WIDTH; ++x) {
             std::vector<Tile *> currentRow;
             for (int y = 0; y < MAP_HEIGHT; ++y) {
@@ -16,12 +16,6 @@ namespace Map {
             tiles.push_back(currentRow);
         }
         tiles[4][2]->type = 1;
-
-        //TODO:Remove debug
-        entities.push_back(new Entity::Entity);
-        entities.back()->addComponent(new Entity::PositionComponent());
-        entities.back()->addComponent(new Entity::VisualComponent(&mainProgram->entitySheet,0));
-        //
     }
 
     Map::~Map() {}
@@ -34,4 +28,10 @@ namespace Map {
         }
     }
 
+    void Map::addEntity(std::vector<Entity::Component*> components) {
+        entities.push_back(new Entity::Entity);
+        for(Entity::Component* component : components){
+            entities.back()->addComponent(component);
+        }
+    }
 }

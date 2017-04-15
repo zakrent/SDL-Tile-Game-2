@@ -22,6 +22,7 @@ namespace Map {
     public:
         std::vector<Entity::Entity*> entities;
         void render(SDL_Renderer* renderer, SDL_Rect camera);
+        void addEntity(std::vector<Entity::Component*> components);
 
         Map(Program *mainProgram);
         ~Map();

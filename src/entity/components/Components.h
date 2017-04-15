@@ -8,5 +8,6 @@
 #include "Component.h"
 #include "PositionComponent.h"
 #include "ColliderComponent.h"
+#include "VisualComponent.h"
 
 #endif //SDL_TILE_2_COMPONENTS_H

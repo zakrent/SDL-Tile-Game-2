@@ -14,7 +14,9 @@ namespace Entity {
     public:
         SDL_Rect collider;
 
-        ColliderComponent(const SDL_Rect &collider);
+        ColliderComponent(const SDL_Rect &collider) : collider(collider) {
+            Component::name = "Collider";
+        }
     };
 }
 

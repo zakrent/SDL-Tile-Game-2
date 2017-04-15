@@ -16,13 +16,12 @@ const int SCREEN_HEIGHT= 320;
 class Program {
 private:
     const Uint32 MIN_UPDATE_TIME = 10;
-
     SDL_Window* window;
+    Uint32 lastUpdate;
+public:
     SDL_Renderer* renderer;
     TextureWrapper entitySheet;
     TextureWrapper tileSheet;
-    Uint32 lastUpdate;
-public:
     std::stack<State::State*> stateStack;
     void startMainLoop();
 

@@ -15,9 +15,17 @@ namespace Entity {
     public:
         Vector2D position;
         Vector2D velocity;
+    //TODO:Remove debug
+        PositionComponent()
+                : velocity(0,0), position(0,0) {
+            Component::name = "Position";
+        }
 
-        PositionComponent();
-        PositionComponent(Vector2D position);
+        PositionComponent(Vector2D position)
+                : velocity(0,0), position(position) {
+            Component::name = "Position";
+        }
+
         ~PositionComponent() {};
     };
 }

@@ -7,6 +7,8 @@
 #include <vector>
 #include "Tile.h"
 #include "../entity/Entity.h"
+#include "../entity/components/Components.h"
+#include "../Program.h"
 
 namespace Map {
 
@@ -16,14 +18,12 @@ namespace Map {
     class Map {
     private:
         std::vector< std::vector< Tile * > > tiles;
-        TextureWrapper* entitySheet;
-        TextureWrapper* tileSheet;
-        SDL_Rect camera;
+        Program* mainProgram;
     public:
         std::vector<Entity::Entity*> entities;
-        void render(SDL_Renderer* renderer);
+        void render(SDL_Renderer* renderer, SDL_Rect camera);
 
-        Map(TextureWrapper *entitySheet, TextureWrapper *tileSheet);
+        Map(Program *mainProgram);
         ~Map();
     };
 }

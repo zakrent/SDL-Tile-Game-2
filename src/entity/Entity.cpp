@@ -16,4 +16,10 @@ namespace Entity {
         if(!components[componentPointer->name])
             components[componentPointer->name] = componentPointer;
     }
+
+    Entity::Entity(std::vector<Component*> components) {
+        for(Component* component : components){
+            addComponent(component);
+        }
+    }
 }

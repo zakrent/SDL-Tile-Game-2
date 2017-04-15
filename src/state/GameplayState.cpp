@@ -3,15 +3,14 @@
 //
 
 #include "GameplayState.h"
+#include "../misc/Renderer.cpp"
+
 namespace State {
 
     void GameplayState::update() {
-        Entity::Entity tempEntity;
-        Entity::PositionComponent *component;
-        component = new Entity::PositionComponent(Vector2D(10, 0));
-        tempEntity.addComponent(component);
-        mainMap.entities.push_back(&tempEntity);
         for (Entity::System* system : systems){
+            if(system->name == "VisualSystem")
+                continue;
             for (Entity::Entity* entity : mainMap.entities) {
                 system->updateEntity(entity);
             }
@@ -19,7 +18,16 @@ namespace State {
     }
 
     void GameplayState::render(SDL_Renderer *renderer) {
-        mainMap.render(renderer);
+        mainMap.render(renderer, camera);
+        Entity::VisualSystem system(mainProgram->renderer, &camera);
+        for (Entity::System* system : systems){
+            if(system->name != "VisualSystem")
+                continue;
+            for (Entity::Entity* entity : mainMap.entities) {
+                system->updateEntity(entity);
+            }
+        }
+
     }
 
     void GameplayState::handleEvent(SDL_Event &event) {
@@ -32,8 +40,14 @@ namespace State {
         }
     }
 
-    GameplayState::GameplayState(Map::Map mainMap, Program *mainProgram) : mainMap(mainMap), mainProgram(mainProgram) {
+    void GameplayState::loadSystems(){
         systems.push_back(new Entity::PositionSystem());
+        systems.push_back(new Entity::VisualSystem(mainProgram->renderer, &camera));
+    }
+
+    GameplayState::GameplayState(Map::Map mainMap, Program *mainProgram) : mainMap(mainProgram), mainProgram(mainProgram) {
+        camera = {0,0, SCREEN_WIDTH, SCREEN_HEIGHT};
+        loadSystems();
     }
 
     GameplayState::~GameplayState() {}

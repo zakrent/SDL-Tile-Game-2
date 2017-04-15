@@ -13,7 +13,7 @@ namespace Entity {
         std::string name;
 
         Component() {};
-        ~Component() {};
+        virtual ~Component() {};
     };
 }
 

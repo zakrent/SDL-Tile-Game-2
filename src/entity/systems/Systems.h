@@ -7,5 +7,6 @@
 
 #include "Systems.h"
 #include "PositionSystem.h"
+#include "VisualSystem.h"
 
 #endif //SDL_TILE_2_SYSTEMS_H

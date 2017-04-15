@@ -3,7 +3,6 @@
 //
 
 #include "PositionSystem.h"
-#include <iostream>
 
 namespace Entity {
     void PositionSystem::updateEntity(Entity *entityPointer) {

@@ -14,7 +14,7 @@ Program::Program() {
     entitySheet.loadFromFile(renderer, "textures/EntitySheet.bmp");
     tileSheet.loadFromFile(renderer, "textures/TileSheet.bmp");
 
-    stateStack.push(new State::GameplayState(Map::Map(&entitySheet, &tileSheet), this));
+    stateStack.push(new State::GameplayState(Map::Map(this), this));
 }
 
 Program::~Program() {

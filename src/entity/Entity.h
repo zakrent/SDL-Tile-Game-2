@@ -6,6 +6,7 @@
 #define SDL_TILE_2_ENTITY_H
 
 #include <map>
+#include <vector>
 #include "components/Component.h"
 #include "components/PositionComponent.h"
 #include "components/ColliderComponent.h"
@@ -22,8 +23,8 @@ namespace Entity {
                 return (T*)components[name];
             return nullptr;
         }
-
         Entity();
+        Entity(std::vector<Component*> components);
         ~Entity();
     };
 }

@@ -50,11 +50,11 @@ namespace Map {
     }
 
     Tile *Map::getTileAtPxPos(Vector2D position) {
-        int tilePosX = int((position.x - (int(position.x) % TILE_WIDTH))/32);
+        int tilePosX = int((position.x - (int(position.x) % TILE_WIDTH))/TILE_WIDTH);
         if(tilePosX < 0 || tilePosX > MAP_WIDTH)
             return nullptr;
-        int tilePosY = int((position.y - (int(position.y) % TILE_HEIGHT))/32);
-        if(tilePosY < 0 || tilePosY > MAP_WIDTH)
+        int tilePosY = int((position.y - (int(position.y) % TILE_HEIGHT))/TILE_HEIGHT);
+        if(tilePosY < 0 || tilePosY > MAP_HEIGHT)
             return nullptr;
         return tiles[tilePosX][tilePosY];
     }

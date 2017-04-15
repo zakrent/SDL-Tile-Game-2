@@ -10,5 +10,6 @@
 #include "VisualSystem.h"
 #include "CameraSystem.h"
 #include "ControlSystem.h"
+#include "CollisionSystem.h"
 
 #endif //SDL_TILE_2_SYSTEMS_H

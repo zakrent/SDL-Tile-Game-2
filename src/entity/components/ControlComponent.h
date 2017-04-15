@@ -14,7 +14,7 @@ namespace Entity {
         ControlComponent(){
             Component::name = "Control";
             velMul = 2;
-        }d
+        }
         ~ControlComponent() {}
     };
 }

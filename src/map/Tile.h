@@ -5,10 +5,18 @@
 #ifndef SDL_TILE_2_TILE_H
 #define SDL_TILE_2_TILE_H
 
+#include <map>
 #include "../misc/TextureWrapper.h"
 #include "../misc/Vector2D.h"
 
 namespace Map {
+
+    enum direction{
+        Up,
+        Down,
+        Right,
+        Left
+    };
 
     const int TILE_HEIGHT = 32;
     const int TILE_WIDTH  = 32;
@@ -20,10 +28,11 @@ namespace Map {
         Vector2D position;
         TextureWrapper* tileSheet;
     public:
+        SDL_Rect getCollider();
         int type;
-        //std::map<direction, Tile*> neighbours;
+        std::map<direction, Tile*> neighbours;
         void render(SDL_Renderer* renderer, SDL_Rect& camera);
-
+        bool isSolid();
         Tile(int type, Vector2D position, TextureWrapper *tileSheet);
         ~Tile();
     };

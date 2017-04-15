@@ -20,4 +20,14 @@ namespace Map {
         SDL_Rect srcrect = {type * TILE_WIDTH, state * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT};
         Render::renderTexture(renderer, tileSheet, srcrect, camera, position, lightLevel);
     }
+
+    bool Tile::isSolid() {
+        return type > 0;
+    }
+
+    SDL_Rect Tile::getCollider() {
+        SDL_Rect collider;
+        collider = {int(position.x), int(position.y), TILE_WIDTH, TILE_HEIGHT};
+        return collider;
+    }
 }

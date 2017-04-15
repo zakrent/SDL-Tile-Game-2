@@ -41,10 +41,11 @@ namespace State {
     }
 
     void GameplayState::loadSystems(){
-        systems.push_back(new Entity::PositionSystem());
-        systems.push_back(new Entity::VisualSystem(mainProgram->renderer, &camera));
-        systems.push_back(new Entity::CameraSystem());
         systems.push_back(new Entity::ControlSystem());
+        systems.push_back(new Entity::PositionSystem());
+        systems.push_back(new Entity::CollisionSystem(&mainMap));
+        systems.push_back(new Entity::CameraSystem());
+        systems.push_back(new Entity::VisualSystem(mainProgram->renderer, &camera));
     }
 
     void GameplayState::loadEntities(){
@@ -53,7 +54,15 @@ namespace State {
         components.push_back(new Entity::VisualComponent(&mainProgram->entitySheet,0));
         components.push_back(new Entity::CameraComponent(&camera));
         components.push_back(new Entity::ControlComponent);
+        components.push_back(new Entity::ColliderComponent({0,0,24,24}));
         mainMap.addEntity(components);
+
+        std::vector<Entity::Component*> components2;
+        components2.push_back(new Entity::PositionComponent(Vector2D(0,82)));
+        components2.push_back(new Entity::VisualComponent(&mainProgram->entitySheet,0));
+        components2.push_back(new Entity::ControlComponent);
+        components2.push_back(new Entity::ColliderComponent({0,0,24,24}));
+        mainMap.addEntity(components2);
     }
 
     GameplayState::GameplayState(Map::Map mainMap, Program *mainProgram) : mainMap(mainProgram), mainProgram(mainProgram) {

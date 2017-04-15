@@ -15,7 +15,21 @@ namespace Map {
             }
             tiles.push_back(currentRow);
         }
+        for (int x = 0; x < MAP_WIDTH; ++x) {
+            for (int y = 0; y < MAP_HEIGHT; ++y) {
+                if(y>0)
+                    tiles[x][y]->neighbours[Up]=tiles[x][y-1];
+                if(y<MAP_WIDTH-1)
+                    tiles[x][y]->neighbours[Down]=tiles[x][y+1];
+                if(x>0)
+                    tiles[x][y]->neighbours[Left]=tiles[x-1][y];
+                if(x<MAP_HEIGHT-1)
+                    tiles[x][y]->neighbours[Right]=tiles[x+1][y];
+            }
+        }
+
         tiles[4][2]->type = 1;
+        tiles[4][2]->neighbours[Right]->type = 1;
     }
 
     Map::~Map() {}
@@ -33,5 +47,15 @@ namespace Map {
         for(Entity::Component* component : components){
             entities.back()->addComponent(component);
         }
+    }
+
+    Tile *Map::getTileAtPxPos(Vector2D position) {
+        int tilePosX = int((position.x - (int(position.x) % TILE_WIDTH))/32);
+        if(tilePosX < 0 || tilePosX > MAP_WIDTH)
+            return nullptr;
+        int tilePosY = int((position.y - (int(position.y) % TILE_HEIGHT))/32);
+        if(tilePosY < 0 || tilePosY > MAP_WIDTH)
+            return nullptr;
+        return tiles[tilePosX][tilePosY];
     }
 }

@@ -17,10 +17,11 @@ namespace Map {
 
     class Map {
     private:
-        std::vector< std::vector< Tile * > > tiles;
         Program* mainProgram;
+        std::vector< std::vector< Tile * > > tiles;
     public:
         std::vector<Entity::Entity*> entities;
+        Tile* getTileAtPxPos(Vector2D position);
         void render(SDL_Renderer* renderer, SDL_Rect camera);
         void addEntity(std::vector<Entity::Component*> components);
 

@@ -10,5 +10,6 @@
 #include "ColliderComponent.h"
 #include "VisualComponent.h"
 #include "CameraComponent.h"
+#include "ControlComponent.h"
 
 #endif //SDL_TILE_2_COMPONENTS_H

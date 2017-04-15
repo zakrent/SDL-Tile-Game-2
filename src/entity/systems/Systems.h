@@ -9,5 +9,6 @@
 #include "PositionSystem.h"
 #include "VisualSystem.h"
 #include "CameraSystem.h"
+#include "ControlSystem.h"
 
 #endif //SDL_TILE_2_SYSTEMS_H

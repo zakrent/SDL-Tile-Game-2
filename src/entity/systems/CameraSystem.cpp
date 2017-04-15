@@ -14,7 +14,12 @@ namespace Entity {
         CameraComponent* cameraComponent = entityPointer->getComponent<CameraComponent>(name);
         if(!cameraComponent)
             return;
-        cameraComponent->camera->x = int(positionComponent->position.x);
-        cameraComponent->camera->y = int(positionComponent->position.y);
+        name = "Visual";
+        VisualComponent* visualComponent = entityPointer->getComponent<VisualComponent>(name);
+        if(!visualComponent)
+            return;
+
+        cameraComponent->camera->x = int((visualComponent->width/2)+positionComponent->position.x-cameraComponent->camera->w/2);
+        cameraComponent->camera->y = int((visualComponent->height/2)+positionComponent->position.y-cameraComponent->camera->h/2);
     }
 }

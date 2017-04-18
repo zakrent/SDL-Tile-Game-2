@@ -4,6 +4,7 @@
 
 #include "Map.h"
 #include "../Program.h"
+#include "../misc/Random.h"
 
 namespace Map {
     Map::Map(Program *mainProgram) : mainProgram(mainProgram) {
@@ -11,7 +12,16 @@ namespace Map {
         for (int x = 0; x < MAP_WIDTH; ++x) {
             std::vector<Tile *> currentRow;
             for (int y = 0; y < MAP_HEIGHT; ++y) {
-                currentRow.push_back(new Tile(0, Vector2D(x*TILE_WIDTH, y*TILE_HEIGHT), &mainProgram->tileSheet));
+                if(x == 0 || x == MAP_WIDTH-1 || y == 0 || y == MAP_HEIGHT-1){
+                    currentRow.push_back(new Tile(1, Vector2D(x*TILE_WIDTH, y*TILE_HEIGHT), &mainProgram->tileSheet));
+                }else{
+                    int result = Random::randomInt(0,100);
+                    if(result < 20 && y%2 == 0){
+                        currentRow.push_back(new Tile(1, Vector2D(x * TILE_WIDTH, y * TILE_HEIGHT), &mainProgram->tileSheet));
+                    }else {
+                        currentRow.push_back(new Tile(0, Vector2D(x * TILE_WIDTH, y * TILE_HEIGHT), &mainProgram->tileSheet));
+                    }
+                }
             }
             tiles.push_back(currentRow);
         }

@@ -13,9 +13,12 @@ namespace Entity {
 
     class PathComponent : public Component{
     public:
+        bool isOnMove;
+        Vector2D moveDestination;
         Entity* target;
-        PathComponent(Entity *target) : target(target) {
+        PathComponent(Entity *target) : target(target), moveDestination(0,0) {
             Component::name = "Path";
+            isOnMove = false;
         }
         ~PathComponent() {}
     };

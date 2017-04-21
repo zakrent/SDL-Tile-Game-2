@@ -18,8 +18,8 @@ namespace Map {
     class Map {
     private:
         Program* mainProgram;
-        std::vector< std::vector< Tile * > > tiles;
     public:
+        std::vector< std::vector< Tile * > > tiles; //TODO : Remove debug
         std::vector<Entity::Entity*> entities;
         Tile* getTileAtPxPos(Vector2D position);
         void render(SDL_Renderer* renderer, SDL_Rect camera);

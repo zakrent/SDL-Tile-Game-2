@@ -8,6 +8,13 @@
 namespace State {
 
     void GameplayState::update() {
+        //TODO : Remove debug
+        for (std::vector<Map::Tile *> row: mainMap.tiles) {
+            for (Map::Tile *tile : row) {
+                tile->lightLevel=255;
+            }
+        }
+        //
         for (Entity::System* system : systems){
             if(system->name == "VisualSystem")
                 continue;

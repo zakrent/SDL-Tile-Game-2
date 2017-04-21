@@ -24,11 +24,11 @@ namespace Map {
     class Tile {
     private:
         int state;
-        Uint8 lightLevel;
          Vector2D position;
         TextureWrapper* tileSheet;
     public:
-         Vector2D getPosition();
+        Uint8 lightLevel;
+        Vector2D getPosition();
         SDL_Rect getCollider();
         int type;
         std::map<direction, Tile*> neighbours;

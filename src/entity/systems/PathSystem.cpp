@@ -21,6 +21,7 @@ namespace Entity {
         while(lastNode.originateFrom != NULL) {
             path.push_back(*lastNode.originateFrom);
             lastNode = *lastNode.originateFrom;
+            path.back().tile->lightLevel=120;//TODO : Remove debug
         }
         return path;
     }

@@ -11,5 +11,6 @@
 #include "CameraSystem.h"
 #include "ControlSystem.h"
 #include "CollisionSystem.h"
+#include "PathSystem.h"
 
 #endif //SDL_TILE_2_SYSTEMS_H

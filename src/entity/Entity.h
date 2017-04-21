@@ -7,10 +7,7 @@
 
 #include <map>
 #include <vector>
-#include "components/Component.h"
-#include "components/PositionComponent.h"
-#include "components/ColliderComponent.h"
-
+#include "components/Components.h"
 
 namespace Entity {
     class Entity {

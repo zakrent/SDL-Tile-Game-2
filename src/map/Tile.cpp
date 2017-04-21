@@ -30,4 +30,8 @@ namespace Map {
         collider = {int(position.x), int(position.y), TILE_WIDTH, TILE_HEIGHT};
         return collider;
     }
+
+    Vector2D Tile::getPosition() {
+        return position;
+    }
 }

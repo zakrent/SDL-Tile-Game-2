@@ -42,6 +42,7 @@ namespace State {
 
     void GameplayState::loadSystems(){
         systems.push_back(new Entity::ControlSystem());
+        systems.push_back(new Entity::PathSystem(&mainMap));
         systems.push_back(new Entity::PositionSystem());
         systems.push_back(new Entity::CollisionSystem(&mainMap));
         systems.push_back(new Entity::CameraSystem());
@@ -58,9 +59,9 @@ namespace State {
         mainMap.addEntity(components);
 
         std::vector<Entity::Component*> components2;
-        components2.push_back(new Entity::PositionComponent(Vector2D(0,82)));
+        components2.push_back(new Entity::PositionComponent(Vector2D(288,188)));
         components2.push_back(new Entity::VisualComponent(&mainProgram->entitySheet,0));
-        components2.push_back(new Entity::ControlComponent);
+        components2.push_back(new Entity::PathComponent(mainMap.entities.back()));
         components2.push_back(new Entity::ColliderComponent({0,0,24,24}));
         mainMap.addEntity(components2);
     }

@@ -11,5 +11,6 @@
 #include "VisualComponent.h"
 #include "CameraComponent.h"
 #include "ControlComponent.h"
+#include "PathComponent.h"
 
 #endif //SDL_TILE_2_COMPONENTS_H

@@ -69,8 +69,7 @@ namespace Entity {
                     continue;
                 if (closedSet.find(tile->getPosition()) != closedSet.end() || tile->isSolid())
                     continue;
-                if (openSet.find(tile->getPosition()) == openSet.end() ||
-                    nextNode.GCost < openSet.find(tile->getPosition())->second.GCost) {
+                if (openSet.find(tile->getPosition()) == openSet.end() || nextNode.GCost < openSet.find(tile->getPosition())->second.GCost) {
                     if (openSet.find(tile->getPosition()) == openSet.end()) {
                         openSet.insert(std::make_pair(tile->getPosition(), Node(nextNode.GCost + 1, targetPositionVector, tile, &closedSet.at( nextNode.tile->getPosition() ) )));
                     } else {

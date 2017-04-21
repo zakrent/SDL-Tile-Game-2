@@ -15,14 +15,16 @@ namespace Entity {
         int GCost;
         int HCost;
         Node* originateFrom;
-        int getFCost() {return GCost+HCost;}
+        int getFCost() {return GCost*Map::TILE_HEIGHT+HCost;}
         Node(int GCost, Vector2D targetPositionVector, Map::Tile *tile, Node *originateFrom = nullptr) : GCost(GCost), tile(tile), originateFrom(originateFrom) {
             HCost = std::abs(int(tile->getPosition().x-targetPositionVector.x)) + std::abs(int(tile->getPosition().y-targetPositionVector.y));
         }
     };
 
     inline bool isNodeFSmaller(std::pair<const Vector2D, Node> node1, std::pair<const Vector2D, Node> node2){
-        return node1.second.getFCost() < node2.second.getFCost();
+        if(node1.second.getFCost() == node2.second.getFCost())
+            return node1.second.getFCost() < node2.second.getFCost();
+        return node1.second.HCost <= node2.second.HCost;
     }
 
     class PathSystem : public System {

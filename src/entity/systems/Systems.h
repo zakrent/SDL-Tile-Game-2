@@ -12,5 +12,6 @@
 #include "ControlSystem.h"
 #include "CollisionSystem.h"
 #include "PathSystem.h"
+#include "HealthSystem.h"
 
 #endif //SDL_TILE_2_SYSTEMS_H

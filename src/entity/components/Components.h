@@ -12,5 +12,6 @@
 #include "CameraComponent.h"
 #include "ControlComponent.h"
 #include "PathComponent.h"
+#include "HealthComponent.h"
 
 #endif //SDL_TILE_2_COMPONENTS_H

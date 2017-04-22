@@ -22,7 +22,6 @@ namespace Entity {
         while(lastNode.originateFrom != NULL) {
             path.push_back(*lastNode.originateFrom);
             lastNode = *lastNode.originateFrom;
-            path.back().tile->lightLevel=120;//TODO : Remove debug
         }
         path.pop_back(); //Removes entity pos from path
         return path;
@@ -87,7 +86,6 @@ namespace Entity {
                     }
                 }
             }
-            int x = path.size();
             if(path.size() != -1 && path.size() != 0){
                 pathComponent->moveDestination = path.back().tile->getPosition();
                 pathComponent->isOnMove = true;
@@ -96,7 +94,7 @@ namespace Entity {
         }else{
             Vector2D positionVector = positionComponent->position;
             Vector2D destinationVector = pathComponent->moveDestination;
-            int velMul = 2;
+            int velMul = 1;
 
             if(positionVector.x != destinationVector.x) {
                 if (positionVector.x < destinationVector.x)

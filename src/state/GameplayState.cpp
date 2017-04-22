@@ -8,18 +8,18 @@
 namespace State {
 
     void GameplayState::update() {
-        //TODO : Remove debug
-        for (std::vector<Map::Tile *> row: mainMap.tiles) {
-            for (Map::Tile *tile : row) {
-                tile->lightLevel=255;
-            }
-        }
-        //
         for (Entity::System* system : systems){
             if(system->name == "VisualSystem")
                 continue;
-            for (Entity::Entity* entity : mainMap.entities) {
-                system->updateEntity(entity);
+            for (int i = 0; i < mainMap.entities.size(); ++i) {
+                if(mainMap.entities[i] == NULL)
+                    continue;
+                if(mainMap.entities[i]->shouldBeDestroyed) {
+                    delete mainMap.entities[i];
+                    mainMap.entities.erase(mainMap.entities.begin()+i);
+                    continue;
+                }
+                system->updateEntity(mainMap.entities[i]);
             }
         }
     }
@@ -31,10 +31,12 @@ namespace State {
             if(system->name != "VisualSystem")
                 continue;
             for (Entity::Entity* entity : mainMap.entities) {
+                if(entity == NULL)
+                    continue;
                 system->updateEntity(entity);
             }
         }
-
+        mainUIController->draw(renderer);
     }
 
     void GameplayState::handleEvent(SDL_Event &event) {
@@ -48,6 +50,7 @@ namespace State {
     }
 
     void GameplayState::loadSystems(){
+        systems.push_back(new Entity::HealthSystem());
         systems.push_back(new Entity::ControlSystem());
         systems.push_back(new Entity::PathSystem(&mainMap));
         systems.push_back(new Entity::PositionSystem());
@@ -62,6 +65,7 @@ namespace State {
         components.push_back(new Entity::VisualComponent(&mainProgram->entitySheet,0));
         components.push_back(new Entity::CameraComponent(&camera));
         components.push_back(new Entity::ControlComponent);
+        components.push_back(new Entity::HealthComponent);
         components.push_back(new Entity::ColliderComponent({0,0,24,24}));
         mainMap.addEntity(components);
 
@@ -69,14 +73,20 @@ namespace State {
         components2.push_back(new Entity::PositionComponent(Vector2D(288,188)));
         components2.push_back(new Entity::VisualComponent(&mainProgram->entitySheet,0));
         components2.push_back(new Entity::PathComponent(mainMap.entities.back()));
+        components2.push_back(new Entity::HealthComponent);
         components2.push_back(new Entity::ColliderComponent({0,0,24,24}));
         mainMap.addEntity(components2);
     }
+
+    void GameplayState::loadUI(){
+        mainUIController = new UI::UIController(mainMap.entities.front());
+    };
 
     GameplayState::GameplayState(Map::Map mainMap, Program *mainProgram) : mainMap(mainProgram), mainProgram(mainProgram) {
         camera = {0,0, SCREEN_WIDTH, SCREEN_HEIGHT};
         loadSystems();
         loadEntities();
+        loadUI();
     }
 
     GameplayState::~GameplayState() {}

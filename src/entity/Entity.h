@@ -14,15 +14,16 @@ namespace Entity {
     private:
         std::map<std::string, Component*> components;
     public:
+        bool shouldBeDestroyed;
         void addComponent(Component* componentPointer);
         template<typename T> T* getComponent(std::string name) {
             if (components[name])
                 return (T*)components[name];
             return nullptr;
         }
-        Entity();
+        Entity() {shouldBeDestroyed=false;};
         Entity(std::vector<Component*> components);
-        ~Entity();
+        ~Entity() {};
     };
 }
 

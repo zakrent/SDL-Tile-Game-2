@@ -12,16 +12,19 @@
 #include "../Program.h"
 #include "../entity/systems/Systems.h"
 #include "../entity/components/Components.h"
+#include "../UI/UIController.h"
 
 namespace State {
     class GameplayState : public State{
     private:
         Map::Map mainMap;
         Program* mainProgram;
+        UI::UIController* mainUIController;
         std::vector<Entity::System*> systems;
         SDL_Rect camera;
         void loadSystems();
         void loadEntities();
+        void loadUI();
     public:
         void update();
         void render(SDL_Renderer* renderer);

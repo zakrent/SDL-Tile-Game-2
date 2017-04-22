@@ -4,14 +4,6 @@
 
 #include "Entity.h"
 namespace Entity {
-    Entity::Entity() {
-
-    }
-
-    Entity::~Entity() {
-
-    }
-
     void Entity::addComponent(Component *componentPointer) {
         if(!components[componentPointer->name])
             components[componentPointer->name] = componentPointer;
@@ -21,5 +13,6 @@ namespace Entity {
         for(Component* component : components){
             addComponent(component);
         }
+        shouldBeDestroyed=false;
     }
 }

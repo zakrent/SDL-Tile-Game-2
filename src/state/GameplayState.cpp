@@ -3,7 +3,6 @@
 //
 
 #include "GameplayState.h"
-#include "../misc/Renderer.cpp"
 
 namespace State {
 
@@ -50,6 +49,8 @@ namespace State {
     }
 
     void GameplayState::loadSystems(){
+        systems.push_back(new Entity::ShootingSystem(&mainMap));
+        systems.push_back(new Entity::BulletSystem(&mainMap));
         systems.push_back(new Entity::HealthSystem());
         systems.push_back(new Entity::ControlSystem());
         systems.push_back(new Entity::PathSystem(&mainMap));
@@ -66,6 +67,7 @@ namespace State {
         components.push_back(new Entity::CameraComponent(&camera));
         components.push_back(new Entity::ControlComponent);
         components.push_back(new Entity::HealthComponent);
+        components.push_back(new Entity::ShootingComponent(20,64,10,10));
         components.push_back(new Entity::ColliderComponent({0,0,24,24}));
         mainMap.addEntity(components);
 

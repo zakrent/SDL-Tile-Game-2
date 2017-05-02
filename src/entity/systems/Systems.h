@@ -13,5 +13,7 @@
 #include "CollisionSystem.h"
 #include "PathSystem.h"
 #include "HealthSystem.h"
+#include "ShootingSystem.h"
+#include "BulletSystem.h"
 
 #endif //SDL_TILE_2_SYSTEMS_H

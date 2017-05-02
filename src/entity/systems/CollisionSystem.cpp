@@ -18,20 +18,8 @@ namespace Entity{
         Map::Tile* standingOn = mainMap->getTileAtPxPos(positionComponent->position);
         if(!standingOn)
             return;
-        std::vector<Map::Tile*> tilesToTest;
-        tilesToTest.push_back(standingOn);
-        tilesToTest.push_back(standingOn->neighbours[Map::Up]);
-        tilesToTest.push_back(standingOn->neighbours[Map::Down]);
-        tilesToTest.push_back(standingOn->neighbours[Map::Right]);
-        tilesToTest.push_back(standingOn->neighbours[Map::Left]);
-        if(standingOn->neighbours[Map::Up]) {
-            tilesToTest.push_back(standingOn->neighbours[Map::Up]->neighbours[Map::Right]);
-            tilesToTest.push_back(standingOn->neighbours[Map::Up]->neighbours[Map::Left]);
-        }
-        if(standingOn->neighbours[Map::Down]) {
-            tilesToTest.push_back(standingOn->neighbours[Map::Down]->neighbours[Map::Right]);
-            tilesToTest.push_back(standingOn->neighbours[Map::Down]->neighbours[Map::Left]);
-        }
+
+        std::vector<Map::Tile*> tilesToTest = CollisionDetection::getTilesToTest(standingOn);
 
         for(Map::Tile* tile : tilesToTest){
             if(tile){

@@ -13,5 +13,7 @@
 #include "ControlComponent.h"
 #include "PathComponent.h"
 #include "HealthComponent.h"
+#include "BulletComponent.h"
+#include "ShootingComponent.h"
 
 #endif //SDL_TILE_2_COMPONENTS_H

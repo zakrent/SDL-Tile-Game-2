@@ -9,6 +9,7 @@
 class Vector2D {
 public:
     float x, y;
+    void normalize();
     Vector2D operator + (Vector2D SecVector);
     Vector2D operator - (Vector2D SecVector);
     void operator += (Vector2D SecVector);
